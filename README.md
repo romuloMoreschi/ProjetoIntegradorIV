@@ -1,2 +1,2 @@
-# ASPNETCoreMVCLojaVirtual
- Curso de ASP.NET Core MVC - Criando uma loja Virtual
+# Projeto Integrador IV (MegaLimp)
+ASP.NET Core MVC 
