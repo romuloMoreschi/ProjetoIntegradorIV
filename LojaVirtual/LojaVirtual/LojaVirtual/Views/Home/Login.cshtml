@@ -1,0 +1,43 @@
+﻿@model LojaVirtual.Models.Cliente;
+
+@{
+    ViewData["Title"] = "Login";
+}
+<main role="main">
+    <br />
+    <br />
+    <section class="container">
+        <aside class="col-sm-4">
+            <h3 class="subtitle-doc">
+                Login
+
+            </h3>
+            <div id="code_login_1">
+                <div class="card">
+                    <article class="card-body">
+                         @if (ViewData["MSG_E"] != null)
+                         {
+                                <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
+                         }
+                        <a asp-action="CadastroCLiente" asp-controller="Home" class="float-right btn btn-outline-primary">Cadastre-se</a>
+                        <h4 class="card-title mb-4 mt-1">Entrar</h4>
+                        <form method="post">
+                            <div class="form-group">
+                                <label>Your Email</label>
+                                <input asp-for="Email" class="form-control" placeholder="Email" type="email">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <a class="float-right" href="#">Esqueceu a senha?</a>
+                                <label>Senha</label>
+                                <input asp-for="Senha"class="form-control" placeholder="******" type="password">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"> Login </button>
+                            </div> <!-- form-group// -->
+                        </form>
+                    </article>
+                </div> <!-- card.// -->
+            </div> <!-- code-wrap.// -->
+        </aside>
+    </section>
+</main>
