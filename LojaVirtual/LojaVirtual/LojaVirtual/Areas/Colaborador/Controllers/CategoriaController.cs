@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaVirtual.Libraries.Filter;
-using LojaVirtual.Migrations;
 using LojaVirtual.Models;
 using LojaVirtual.Repository;
 using LojaVirtual.Repository.Contract;

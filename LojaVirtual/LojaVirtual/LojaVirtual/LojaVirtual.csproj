@@ -6,35 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190130150611_BancoInicial.cs" />
-    <Compile Remove="Migrations\20190130150611_BancoInicial.Designer.cs" />
-    <Compile Remove="Migrations\20201013152435_RetomandoEstudo.cs" />
-    <Compile Remove="Migrations\20201013152435_RetomandoEstudo.Designer.cs" />
-    <Compile Remove="Migrations\20201020143348_ClienteTeste.cs" />
-    <Compile Remove="Migrations\20201020143348_ClienteTeste.Designer.cs" />
-    <Compile Remove="Migrations\20201020143705_ClienteTeste.cs" />
-    <Compile Remove="Migrations\20201020143705_ClienteTeste.Designer.cs" />
-    <Compile Remove="Migrations\20201020144454_ClienteTeste.cs" />
-    <Compile Remove="Migrations\20201020144454_ClienteTeste.Designer.cs" />
-    <Compile Remove="Migrations\20201020144538_Initial.cs" />
-    <Compile Remove="Migrations\20201020144538_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20201105134259_BdCategoria.cs" />
-    <Compile Remove="Migrations\20201105134259_BdCategoria.Designer.cs" />
-    <Compile Remove="Migrations\20201105134414_BdCategoria.cs" />
-    <Compile Remove="Migrations\20201105134414_BdCategoria.Designer.cs" />
-    <Compile Remove="Migrations\20201105144518_BdCategoria.cs" />
-    <Compile Remove="Migrations\20201105144518_BdCategoria.Designer.cs" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -66,6 +44,18 @@
 
   <ItemGroup>
     <Folder Include="Areas\Colaborador\Models\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\Imagens\AguaSanitaria5L.jpeg" />
+    <None Include="wwwroot\Imagens\WhatsApp Image 2020-11-09 at 09.39.23 %281%29.jpeg" />
+    <None Include="wwwroot\Imagens\Desinfetante.jpeg" />
+    <None Include="wwwroot\Imagens\WhatsApp Image 2020-11-09 at 09.39.24 %281%29.jpeg" />
+    <None Include="wwwroot\Imagens\WhatsApp Image 2020-11-09 at 09.39.24.jpeg" />
+    <None Include="wwwroot\Imagens\WhatsApp Image 2020-11-09 at 09.39.25 %281%29.jpeg" />
+    <None Include="wwwroot\Imagens\WhatsApp Image 2020-11-09 at 09.39.25 %282%29.jpeg" />
+    <None Include="wwwroot\Imagens\WhatsApp Image 2020-11-09 at 09.39.25.jpeg" />
   </ItemGroup>
 
 </Project>
