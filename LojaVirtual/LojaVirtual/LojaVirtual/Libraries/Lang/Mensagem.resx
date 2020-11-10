@@ -129,4 +129,16 @@
   <data name="MSG_E004" xml:space="preserve">
     <value>O campo {0} não é válido!</value>
   </data>
+  <data name="MSG_E005" xml:space="preserve">
+    <value>A senha deve ser igual ao campo {0}!!</value>
+  </data>
+  <data name="MSG_S001" xml:space="preserve">
+    <value>Cadastro realizado com sucesso !!</value>
+  </data>
+  <data name="MSG_S002" xml:space="preserve">
+    <value>Registro excluido com sucesso !!!</value>
+  </data>
+  <data name="MSG_S003" xml:space="preserve">
+    <value>Cadastro atualizado com sucesso!!</value>
+  </data>
 </root>
