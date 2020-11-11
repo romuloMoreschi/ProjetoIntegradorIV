@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LojaVirtual.Migrations
 {
-    public partial class initial : Migration
+    public partial class initials : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,9 +53,9 @@ namespace LojaVirtual.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Senha = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Senha = table.Column<string>(nullable: false),
                     Tipo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -74,6 +74,22 @@ namespace LojaVirtual.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NewsletterEmails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Produto",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(nullable: true),
+                    Descricao = table.Column<string>(nullable: true),
+                    Valor = table.Column<decimal>(nullable: false),
+                    Imagem = table.Column<byte[]>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produto", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
@@ -95,6 +111,9 @@ namespace LojaVirtual.Migrations
 
             migrationBuilder.DropTable(
                 name: "NewsletterEmails");
+
+            migrationBuilder.DropTable(
+                name: "Produto");
         }
     }
 }

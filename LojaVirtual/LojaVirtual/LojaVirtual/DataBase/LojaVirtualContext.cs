@@ -19,5 +19,7 @@ namespace LojaVirtual.Database
         public DbSet<Colaborador> Colaboradores { get; set; }
 
         public DbSet<Categoria> Categorias { get; set; }
+
+        public DbSet<LojaVirtual.Models.Produto> Produto { get; set; }
     }
 }

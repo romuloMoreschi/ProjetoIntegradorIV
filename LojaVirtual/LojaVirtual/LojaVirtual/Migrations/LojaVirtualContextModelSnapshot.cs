@@ -71,11 +71,14 @@ namespace LojaVirtual.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
-                    b.Property<string>("Senha");
+                    b.Property<string>("Senha")
+                        .IsRequired();
 
                     b.Property<string>("Tipo");
 
@@ -95,6 +98,24 @@ namespace LojaVirtual.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NewsletterEmails");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descricao");
+
+                    b.Property<byte[]>("Imagem");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<decimal>("Valor");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Produto");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.Categoria", b =>

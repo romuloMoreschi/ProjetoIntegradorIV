@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace LojaVirtual.Models
+﻿namespace LojaVirtual.Models
 {
     public class Produto
     {
@@ -12,5 +7,6 @@ namespace LojaVirtual.Models
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
+        public byte[] Imagem { get; set; }
     }
 }

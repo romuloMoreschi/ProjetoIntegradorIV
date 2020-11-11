@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LojaVirtual.Libraries.Email;
 using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using LojaVirtual.Database;
 using LojaVirtual.Repository;
 using LojaVirtual.Repository.Contract;
 using Microsoft.AspNetCore.Http;

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/resources/lib/bootstrap-ecommerce-uikit/css/responsive.css" media="only screen and (max-width: 1200px)" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="../CSS/StyleSheet.css"/>
+    <link rel="stylesheet" href="../CSS/StyleSheet.css" />
 </head>
 <body>
     <header>
@@ -36,8 +36,7 @@
                             <i class="fas fa-list-ul"></i> Categorias
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="Produto" asp-action="Index">Produto</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
@@ -61,12 +60,12 @@
     <div>
         @RenderBody()
     </div>
-    <hr class="featurette-divider">
-
     <!-- FOOTER -->
-    <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017-@DateTime.Now.Year - LojaVirtual, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <br />
+            &copy; 2020 - Megalimp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
     </footer>
 
     <!-- Bootstrap core JavaScript

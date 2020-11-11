@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LojaVirtual.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <!--Sómente para teste-->
+    <a asp-action="Create">Adicionar Novo</a>
+</p>
+
+<main>
+    @foreach (var item in Model)
+    {
+
+        <div class="container" id="code_prod_complex">
+            <div class="row">
+                <div class="col-md-4">
+                    <figure class="card card-product">
+                        <div class="img-wrap">@Html.DisplayNameFor(model => model.Imagem) </div>
+                        <figcaption class="info-wrap">
+                            <h4 class="title">Desinfetante</h4>
+                            <p class="desc">@Html.DisplayNameFor(model => model.Descricao)</p>
+                            <div class="rating-wrap">
+                                <ul class="rating-stars">
+                                    <li style="width:80%" class="stars-active">
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <div class="label-rating">132 reviews</div>
+                                <div class="label-rating">154 orders </div>
+                            </div> <!-- rating-wrap.// -->
+                        </figcaption>
+                        <div class="bottom-wrap">
+                            <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
+                            <div class="price-wrap h5">
+                                <span class="price-new">@Html.DisplayNameFor(model => model.Valor)</span>
+                            </div> <!-- price-wrap.// -->
+                        </div> <!-- bottom-wrap.// -->
+                    </figure>
+                </div> <!-- col // -->
+            </div> <!-- row.// -->
+        </div>
+    }
+</main>

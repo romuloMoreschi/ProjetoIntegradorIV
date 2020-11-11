@@ -13,7 +13,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="first-slide" src="./Imagens/carrosel1.jpg"  alt="First slide">
+                <img class="first-slide" src="./Imagens/carrosel1.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
                 <img class="second-slide" src="./Imagens/carrosel2.jpg" alt="Second slide">
@@ -124,57 +124,36 @@
     </div>
 </main>
 
-@{
-/*
- * Razor - Motor Template do ASP.NET
- * Html Helper - Interface que proporciona gerar código HTML por meio do C#, isso ajuda na manipulação de informações entre HTML e Tecnologia ASP.NET
- */
-
-/*
- * URL: #Fragmento
- */
-
-/*
- * Primeiro formulário:
- * @using (Html.BeginForm("index", "home", FormMethod.Post))
- */
-}
-
-
 
 @using (Html.BeginForm(null, null, null, FormMethod.Post, false, new { @action = @Url.Action("index", "home") + "#formulario" }))
 {
-
-        <div class="container" id="formulario">
-            <div class="row">
-                <div class="col-sm-8 offset-sm-2">
-                    @if (TempData["MSG_S"] != null)
-                    {
-                        <p class="alert alert-success">@TempData["MSG_S"]</p>
-                    }
-                </div>
-            </div>
-            <div class="row">
-                
-                <div class="col-sm-6 offset-sm-2">
-                    <div class="form-group">
-                        <label for="nome">Cadastre seu e-mail para receber promoções:</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa  fa-envelope "></i></span>
-                            </div>
-                            @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                        <span style="color: red;">@Html.ValidationMessageFor(m => m.Email)</span>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <br />
-                    <button class="subscribe btn btn-primary btn-block" type="submit" style="margin-top: 7px"> Cadastrar-se </button>
-                </div>
-
-
+    <div class="container" id="formulario">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                @if (TempData["MSG_S"] != null)
+                {
+                    <p class="alert alert-success">@TempData["MSG_S"]</p>
+                }
             </div>
         </div>
-    
+        <div class="row">
+
+            <div class="col-sm-6 offset-sm-2">
+                <div class="form-group">
+                    <label for="nome">Cadastre seu e-mail para receber promoções:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa  fa-envelope "></i></span>
+                        </div>
+                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <span style="color: red;">@Html.ValidationMessageFor(m => m.Email)</span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <br />
+                <button class="subscribe btn btn-primary btn-block" type="submit" style="margin-top: 7px"> Cadastrar-se </button>
+            </div>
+        </div>
+    </div>
 }
