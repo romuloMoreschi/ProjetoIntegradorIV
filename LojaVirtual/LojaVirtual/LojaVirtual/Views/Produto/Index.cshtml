@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 <p>
-    <a asp-action="Create">Adicionar Novo</a>
+    <a asp-action="Cadastrar">Adicionar Novo</a>
 </p>
 
-<main>
+<main role="main">
     @foreach (var item in Model)
     {
 
@@ -15,10 +15,10 @@
             <div class="row">
                 <div class="col-md-4">
                     <figure class="card card-product">
-                        <div class="img-wrap">@Html.DisplayNameFor(model => model.Imagem) </div>
+                        <div class="img-wrap">@Html.DisplayFor(modelItem => item.Imagem) </div>
                         <figcaption class="info-wrap">
-                            <h4 class="title">Desinfetante</h4>
-                            <p class="desc">@Html.DisplayNameFor(model => model.Descricao)</p>
+                            <h4 class="title">@Html.DisplayFor(modelItem => item.Nome)</h4>
+                            <p class="desc">@Html.DisplayFor(modelItem => item.Descricao)</p>
                             <div class="rating-wrap">
                                 <ul class="rating-stars">
                                     <li style="width:80%" class="stars-active">
@@ -30,17 +30,17 @@
                                 </ul>
                                 <div class="label-rating">132 reviews</div>
                                 <div class="label-rating">154 orders </div>
-                            </div> <!-- rating-wrap.// -->
+                            </div>
                         </figcaption>
                         <div class="bottom-wrap">
                             <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
                             <div class="price-wrap h5">
-                                <span class="price-new">@Html.DisplayNameFor(model => model.Valor)</span>
-                            </div> <!-- price-wrap.// -->
-                        </div> <!-- bottom-wrap.// -->
+                                <span class="price-new">@Html.DisplayFor(modelItem => item.Valor)</span>
+                            </div> 
+                        </div> 
                     </figure>
-                </div> <!-- col // -->
-            </div> <!-- row.// -->
+                </div> 
+            </div> 
         </div>
     }
 </main>
