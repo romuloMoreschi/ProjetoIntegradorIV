@@ -17,6 +17,12 @@ namespace LojaVirtual.Controllers
             _context = context;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+
         // GET: api/Produto
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProduto()
