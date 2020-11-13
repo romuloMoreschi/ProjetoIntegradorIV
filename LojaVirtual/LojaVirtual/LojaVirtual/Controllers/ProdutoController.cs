@@ -33,8 +33,6 @@ namespace LojaVirtual.Controllers
             _context.Produto.Add(produto);
             await _context.SaveChangesAsync();
 
-            CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
-
             return RedirectToAction(nameof(Index));
         }
     }
