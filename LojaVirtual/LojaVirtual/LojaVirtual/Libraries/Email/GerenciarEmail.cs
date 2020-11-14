@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Libraries.Email
 {
-    public class ContatoEmail
+    public class GerenciarEmail
     {
+        private SmtpClient _smtp;
+        private IConfiguration _configuration;
         public static void EnviarContatoPorEmail(Contato contato)
         {
             /*
@@ -20,7 +23,7 @@ namespace LojaVirtual.Libraries.Email
             smtp.Credentials = new NetworkCredential("andr3y.lim1@gmail.com", "");
             smtp.EnableSsl = true;
 
-            string corpoMsg = string.Format("<h2>Contato - LojaVirtual</h2>" +
+            string corpoMsg = string.Format("<h2>Contato - MegaLimp</h2>" +
                 "<b>Nome: </b> {0} <br />" +
                 "<b>E-mail: </b> {1} <br />" +
                 "<b>Texto: </b> {2} <br />" +
@@ -37,12 +40,32 @@ namespace LojaVirtual.Libraries.Email
             MailMessage mensagem = new MailMessage();
             mensagem.From = new MailAddress("andr3y.lim1@gmail.com");
             mensagem.To.Add("andr3y.lim1@gmail.com");
-            mensagem.Subject = "Contato - LojaVirtual - E-mail: " + contato.Email;
+            mensagem.Subject = "Contato - MegaLimp - E-mail: " + contato.Email;
             mensagem.Body = corpoMsg;
             mensagem.IsBodyHtml = true;
 
             //Enviar Mensagem via SMTP
             smtp.Send(mensagem);
         }
+
+        public void EnviarSenhaParaColaboradorPorEmail(Colaborador colaborador)
+        {
+            string corpoMsg = string.Format("<h2>Colaborador - MegaLimp</h2>" +
+                "Sua senha é:" +
+                "<h3>{0}</h3>", colaborador.Senha);
+            /*
+             * MailMessage -> Construir a mensagem
+             */
+            MailMessage mensagem = new MailMessage();
+            mensagem.From = new MailAddress(_configuration.GetValue<string>("Email:Username"));
+            mensagem.To.Add(colaborador.Email);
+            mensagem.Subject = "Colaborador - MegaLimp - Senha do colaborador - " + colaborador.Nome;
+            mensagem.Body = corpoMsg;
+            mensagem.IsBodyHtml = true;
+
+            //Enviar Mensagem via SMTP
+            _smtp.Send(mensagem);
+        }
+
     }
 }

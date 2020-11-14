@@ -6,8 +6,10 @@ using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Repository;
 using LojaVirtual.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
+using LojaVirtual.Libraries.Texto;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using X.PagedList;
+using LojaVirtual.Libraries.Email;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
@@ -15,9 +17,11 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     public class ColaboradorController : Controller
     {
         private IColaboradorRepository _colaboradorRepository;
-        public ColaboradorController(IColaboradorRepository colaborador)
+        private GerenciarEmail _gerenciarEmail;
+        public ColaboradorController(IColaboradorRepository colaborador, GerenciarEmail gerenciarEmail)
         {
             _colaboradorRepository = colaborador;
+            _gerenciarEmail = gerenciarEmail;
         }
         public IActionResult Index(int? pagina)
         {
@@ -43,6 +47,18 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
             }
             return View();
+        }
+
+
+        public IActionResult GerarSenha(int Id)
+        {
+            Models.Colaborador colaborador = _colaboradorRepository.ObterColaborador(Id);
+            colaborador.Senha = KeyGenerator.GetUniqueKey(8);
+            _colaboradorRepository.Atualizar(colaborador);
+            _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
+            TempData["MSG_S"] = Mensagem.MSG_S004;
+            return RedirectToAction(nameof(Index));
+
         }
 
         [HttpGet]
