@@ -21,19 +21,5 @@ namespace LojaVirtual.Controllers
         {
             return View(_context.Produto);
         }
-
-        public IActionResult Cadastrar()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Produto>> Cadastrar(Produto produto)
-        {
-            _context.Produto.Add(produto);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
-        }
     }
 }

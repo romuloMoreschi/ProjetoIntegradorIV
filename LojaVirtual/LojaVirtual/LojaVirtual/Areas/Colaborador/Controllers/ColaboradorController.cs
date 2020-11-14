@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LojaVirtual.Libraries.Lang;
+﻿using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Repository;
 using LojaVirtual.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 using LojaVirtual.Libraries.Texto;
-using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using X.PagedList;
 using LojaVirtual.Libraries.Email;
 
@@ -35,6 +30,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View()
 ;
         }
+
         [HttpPost]
         public IActionResult Cadastrar([FromForm] Models.Colaborador colaborador)
         {
