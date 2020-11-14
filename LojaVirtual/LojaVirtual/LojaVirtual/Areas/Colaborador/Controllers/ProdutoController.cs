@@ -25,7 +25,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
-        public IActionResult Editar(int Id)
+        public IActionResult Atualizar(int Id)
         {
             var produto = _produtoRepository.ObterProduto(Id);
             ViewBag.Produto = _produtoRepository.ObterTodosProdutos().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
@@ -33,7 +33,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost]
-        public IActionResult Editar([FromForm] Produto produto, int Id)
+        public IActionResult Atualizar([FromForm] Produto produto, int Id)
         {
             if (ModelState.IsValid)
             {
