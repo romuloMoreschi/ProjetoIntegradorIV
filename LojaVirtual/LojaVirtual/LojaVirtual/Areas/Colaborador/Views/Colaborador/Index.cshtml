@@ -1,4 +1,4 @@
-﻿@model X.PagedList.IPagedList<LojaVirtual.Models.Colaborador>
+﻿@model X.PagedList.IPagedList<LojaVirtual.Models.Usuario>
 @{
     ViewData["Title"] = "Index";
 }
@@ -27,17 +27,17 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Colaborador colaborador in Model)
+                @foreach (Usuario usuario in Model)
                 {
                     <tr>
-                        <th scope="row">@colaborador.Id</th>
-                        <td>@colaborador.Nome</td>
-                        <td>@colaborador.Email</td>
+                        <th scope="row">@usuario.Id</th>
+                        <td>@usuario.Nome</td>
+                        <td>@usuario.Email</td>
 
                         <td>
-                            <a asp-action="GerarSenha" asp-route-id="@colaborador.Id" class="btn btn-secondary">Gerar Senha</a>
-                            <a asp-action="Atualizar" asp-route-id="@colaborador.Id" class="btn btn-secondary">Atualizar</a>
-                            <a asp-action="Excluir" asp-route-id="@colaborador.Id" class="btn btn-danger">Excluir</a>
+                            <a asp-action="GerarSenha" asp-route-id="@usuario.Id" class="btn btn-secondary">Gerar Senha</a>
+                            <a asp-action="Atualizar" asp-route-id="@usuario.Id" class="btn btn-secondary">Atualizar</a>
+                            <a asp-action="Excluir" asp-route-id="@usuario.Id" class="btn btn-danger">Excluir</a>
                         </td>
                     </tr>
                 }

@@ -32,9 +32,8 @@ namespace LojaVirtual
              * 
              */
             services.AddHttpContextAccessor();
-            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
-            services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
@@ -77,8 +76,7 @@ namespace LojaVirtual
 
             });
             services.AddScoped<Session>();
-            services.AddScoped<LoginCliente>();
-            services.AddScoped<LoginColaborador>();
+            services.AddScoped<LoginUsuario>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<LojaVirtualContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }

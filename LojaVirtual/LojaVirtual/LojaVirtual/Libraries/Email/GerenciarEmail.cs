@@ -48,18 +48,18 @@ namespace LojaVirtual.Libraries.Email
             smtp.Send(mensagem);
         }
 
-        public void EnviarSenhaParaColaboradorPorEmail(Colaborador colaborador)
+        public void EnviarSenhaParaColaboradorPorEmail(Usuario usuario)
         {
             string corpoMsg = string.Format("<h2>Colaborador - MegaLimp</h2>" +
                 "Sua senha é:" +
-                "<h3>{0}</h3>", colaborador.Senha);
+                "<h3>{0}</h3>", usuario.Senha);
             /*
              * MailMessage -> Construir a mensagem
              */
             MailMessage mensagem = new MailMessage();
             mensagem.From = new MailAddress(_configuration.GetValue<string>("Email:Username"));
-            mensagem.To.Add(colaborador.Email);
-            mensagem.Subject = "Colaborador - MegaLimp - Senha do colaborador - " + colaborador.Nome;
+            mensagem.To.Add(usuario.Email);
+            mensagem.Subject = "Colaborador - MegaLimp - Senha do colaborador - " + usuario.Nome;
             mensagem.Body = corpoMsg;
             mensagem.IsBodyHtml = true;
 

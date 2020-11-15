@@ -1,4 +1,4 @@
-﻿@model LojaVirtual.Models.Cliente;
+﻿@model LojaVirtual.Models.Usuario;
 
 @{
     ViewData["Title"] = "Login";
@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <a class="float-right" href="#">Esqueceu a senha?</a>
                                 <label>Senha</label>
-                                <input asp-for="Senha"class="form-control" placeholder="******" type="password">
+                                <input asp-for="Senha" class="form-control" placeholder="Digite sua senha" type="password">
                             </div> <!-- form-group// -->
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block"> Login </button>

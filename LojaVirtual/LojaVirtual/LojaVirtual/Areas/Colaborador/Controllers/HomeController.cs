@@ -13,12 +13,12 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     [Area("Colaborador")]
     public class HomeController : Controller
     {
-        private IColaboradorRepository _repositoryColaborador;
-        private LoginColaborador _loginColaborador;
-        public HomeController(IColaboradorRepository repositoryColaborador, LoginColaborador loginColaborador)
+        private IUsuarioRepository _repositoryUsuario;
+        private LoginUsuario _loginUsuario;
+        public HomeController(IUsuarioRepository repositoryColaborador, LoginUsuario loginUsuario)
         {
-            _repositoryColaborador = repositoryColaborador;
-            _loginColaborador = loginColaborador;
+            _repositoryUsuario = repositoryColaborador;
+            _loginUsuario = loginUsuario;
         }
 
 
@@ -28,15 +28,15 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login([FromForm] Models.Colaborador colaborador)
+        public IActionResult Login([FromForm] Models.Usuario usuario)
         {
-            Models.Colaborador colaboradordb = _repositoryColaborador.Login(colaborador.Email, colaborador.Senha);
+            Models.Usuario usuariodb = _repositoryUsuario.Login(usuario.Email, usuario.Senha);
 
-            if (colaboradordb != null)
+            if (usuariodb != null)
             {
                 //Fazer consulta no banco de dados e armazenar na sesscao
                 //o que pode ser guradado na secao (EMAIL,ID,SENHA,NOME ETC)
-                _loginColaborador.Login(colaboradordb);
+                _loginUsuario.Login(usuariodb);
                 return new RedirectResult(Url.Action(nameof(Painel)));
             }
             else
@@ -56,14 +56,14 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         {
             return View();
         }
-        [ColaboradorAutorizacaoAtribute]
+        [UsuarioAutorizacaoAtribute]
         public IActionResult Logout() 
         {
-            _loginColaborador.Logout();
+            _loginUsuario.Logout();
             return RedirectToAction("Login", "Home");
         }
 
-        [ColaboradorAutorizacaoAtribute]
+        [UsuarioAutorizacaoAtribute]
         public IActionResult Painel()
         {
             return View();

@@ -16,14 +16,14 @@ namespace LojaVirtual.Controllers
     public class HomeController : Controller
     {
 
-        private IClienteRepository _repositoryCliente;
+        private IUsuarioRepository _repositoryUsuario;
         private INewsletterRepository _repositoryNewsletter;
-        private LoginCliente _loginCliente;
-        public HomeController(IClienteRepository repositoryClente, INewsletterRepository repositoryNewsletter, LoginCliente loginCliente)
+        private LoginUsuario _loginUsuario;
+        public HomeController(IUsuarioRepository repositoryUsuario, INewsletterRepository repositoryNewsletter, LoginUsuario loginUsuario)
         {
-            _repositoryCliente = repositoryClente;
+            _repositoryUsuario = repositoryUsuario;
             _repositoryNewsletter = repositoryNewsletter;
-            _loginCliente = loginCliente;
+            _loginUsuario = loginUsuario;
         }
 
         [HttpGet]
@@ -102,16 +102,26 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromForm] Cliente cliente)
+        public IActionResult Login([FromForm] Usuario usuario)
         {
-            Cliente clienteDb = _repositoryCliente.Login(cliente.Email, cliente.Senha);
+            Usuario clienteDb = _repositoryUsuario.Login(usuario.Email, usuario.Senha);
 
             if (clienteDb != null)
             {
-                //Fazer consulta no banco de dados e armazenar na sesscao
-                //o que pode ser guradado na secao (EMAIL,ID,SENHA,NOME ETC)
-                _loginCliente.Login(clienteDb);
-                return new RedirectResult(Url.Action(nameof(Painel)));
+                _loginUsuario.Login(clienteDb);
+
+                string _tipoDb = _repositoryUsuario.ConsultaTipo(usuario.Email);
+
+                if (_tipoDb.Equals("CLIENTE"))
+                {
+                    return new RedirectResult(Url.Action(nameof(Painel)));
+                }
+                else
+                {
+                    //MUDAR PARA AREA DO COLABORADOR
+                    return new RedirectResult(Url.Action(nameof(Index)));
+                }            
+                
             }
             else
             {
@@ -122,7 +132,7 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpGet]
-        [ClienteAutorizacaoAtribute]
+        [UsuarioAutorizacaoAtribute]
         public IActionResult Painel()
         {
             return new ContentResult() { Content = "Este é o Painel do Cliente" };
@@ -137,11 +147,11 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpPost]
-        public IActionResult CadastroCliente([FromForm] Cliente cliente)
+        public IActionResult CadastroCliente([FromForm] Usuario cliente)
         {
             if (ModelState.IsValid)
             {
-                _repositoryCliente.Cadastrar(cliente);
+                _repositoryUsuario.Cadastrar(cliente);
                 TempData["MSG_S"] = "Cadastro realizado com sucesso!";
 
                 //TODO - Implementar redirecionamentos diferentes (Painel, Carrinho de Compras etc).

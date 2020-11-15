@@ -9,19 +9,19 @@ using LojaVirtual.Libraries.Email;
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
-    public class ColaboradorController : Controller
+    public class UsuarioController : Controller
     {
-        private IColaboradorRepository _colaboradorRepository;
+        private IUsuarioRepository _usuarioRepository;
         private GerenciarEmail _gerenciarEmail;
-        public ColaboradorController(IColaboradorRepository colaborador, GerenciarEmail gerenciarEmail)
+        public UsuarioController(IUsuarioRepository usuario, GerenciarEmail gerenciarEmail)
         {
-            _colaboradorRepository = colaborador;
+            _usuarioRepository = usuario;
             _gerenciarEmail = gerenciarEmail;
         }
         public IActionResult Index(int? pagina)
         {
-            IPagedList<Models.Colaborador> colaboradores = _colaboradorRepository.ObterTodosColaborardores(pagina);
-            return View(colaboradores);
+            IPagedList<Models.Usuario> usuario = _usuarioRepository.ObterTodosUsuarios(pagina);
+            return View(usuario);
         }
 
         [HttpGet]
@@ -32,12 +32,12 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm] Models.Colaborador colaborador)
+        public IActionResult Cadastrar([FromForm] Models.Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                colaborador.Tipo = "C";
-                _colaboradorRepository.Cadastrar(colaborador);
+                usuario.TipoUsuario = "colaborador";
+                _usuarioRepository.Cadastrar(usuario);
                 TempData["MSG_S"] = Mensagem.MSG_S001;
                 return RedirectToAction(nameof(Index));
 
@@ -48,10 +48,10 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
         public IActionResult GerarSenha(int Id)
         {
-            Models.Colaborador colaborador = _colaboradorRepository.ObterColaborador(Id);
-            colaborador.Senha = KeyGenerator.GetUniqueKey(8);
-            _colaboradorRepository.Atualizar(colaborador);
-            _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
+            Models.Usuario usuario = _usuarioRepository.ObterUsuario(Id);
+            usuario.Senha = KeyGenerator.GetUniqueKey(8);
+            _usuarioRepository.Atualizar(usuario);
+            _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(usuario);
             TempData["MSG_S"] = Mensagem.MSG_S004;
             return RedirectToAction(nameof(Index));
 
@@ -60,17 +60,17 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpGet]
         public IActionResult Atualizar(int Id)
         {
-            Models.Colaborador colaborador = _colaboradorRepository.ObterColaborador(Id);
+            Models.Usuario colaborador = _usuarioRepository.ObterUsuario(Id);
 
             return View(colaborador);
 
         }
         [HttpPost]
-        public IActionResult Atualizar([FromForm] Models.Colaborador colaborador, int Id)
+        public IActionResult Atualizar([FromForm] Models.Usuario usuario, int Id)
         {
             if (ModelState.IsValid)
             {
-                _colaboradorRepository.Atualizar(colaborador);
+                _usuarioRepository.Atualizar(usuario);
                 TempData["MSG_S"] = Mensagem.MSG_S003;
                 return RedirectToAction(nameof(Index));
             }
@@ -78,7 +78,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
         public IActionResult Excluir(int Id)
         {
-            _colaboradorRepository.Excluir(Id);
+            _usuarioRepository.Excluir(Id);
             TempData["MSG_S"] = Mensagem.MSG_S002;
             return RedirectToAction(nameof(Index));
         }

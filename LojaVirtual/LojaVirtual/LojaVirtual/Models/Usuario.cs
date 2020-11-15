@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Models
 {
-    public class Cliente
+    public class Usuario
     {
-        /* PK */
         public int Id { get; set; }
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(4, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
@@ -20,7 +19,7 @@ namespace LojaVirtual.Models
 
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public string Sexo { get; set; }
-        
+
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public string CPF { get; set; }
 
@@ -35,5 +34,6 @@ namespace LojaVirtual.Models
         [MinLength(4, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         public string Senha { get; set; }
 
+        public string TipoUsuario { get; set; }
     }
 }

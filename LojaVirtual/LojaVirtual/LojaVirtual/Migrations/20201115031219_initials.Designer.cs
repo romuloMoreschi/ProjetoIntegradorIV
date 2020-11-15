@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20201111160325_initials")]
+    [Migration("20201115031219_initials")]
     partial class initials
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("LojaVirtual.Models.Categoria", b =>
                 {
@@ -36,57 +36,6 @@ namespace LojaVirtual.Migrations
                     b.HasIndex("CategoriaPaiId");
 
                     b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("LojaVirtual.Models.Cliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CPF")
-                        .IsRequired();
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<DateTime>("Nascimento");
-
-                    b.Property<string>("Nome")
-                        .IsRequired();
-
-                    b.Property<string>("Senha")
-                        .IsRequired();
-
-                    b.Property<string>("Sexo")
-                        .IsRequired();
-
-                    b.Property<string>("Telefone")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cliente");
-                });
-
-            modelBuilder.Entity("LojaVirtual.Models.Colaborador", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Nome")
-                        .IsRequired();
-
-                    b.Property<string>("Senha")
-                        .IsRequired();
-
-                    b.Property<string>("Tipo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Colaboradores");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.NewsletterEmail", b =>
@@ -118,6 +67,38 @@ namespace LojaVirtual.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Produto");
+                });
+
+            modelBuilder.Entity("LojaVirtual.Models.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CPF")
+                        .IsRequired();
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<DateTime>("Nascimento");
+
+                    b.Property<string>("Nome")
+                        .IsRequired();
+
+                    b.Property<string>("Senha")
+                        .IsRequired();
+
+                    b.Property<string>("Sexo")
+                        .IsRequired();
+
+                    b.Property<string>("Telefone")
+                        .IsRequired();
+
+                    b.Property<string>("TipoUsuario");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("LojaVirtual.Models.Categoria", b =>
