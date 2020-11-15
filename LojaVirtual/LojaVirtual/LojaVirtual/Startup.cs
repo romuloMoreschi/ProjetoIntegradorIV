@@ -54,7 +54,7 @@ namespace LojaVirtual
 
             //    return smtp;
             //});
-            //services.AddScoped<GerenciarEmail>();
+            services.AddScoped<GerenciarEmail>();
 
 
 

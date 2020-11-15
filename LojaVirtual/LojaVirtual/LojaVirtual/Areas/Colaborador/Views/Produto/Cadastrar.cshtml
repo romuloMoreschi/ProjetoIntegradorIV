@@ -32,9 +32,10 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Imagem" class="control-label"></label>
-                <input asp-for="Imagem" class="form-control" />
+                <label asp-for="Imagem" class="control-label">File input</label>
+                <input asp-for="Imagem" class="form-control-file" aria-describedby="fileHelp">
                 <span asp-validation-for="Imagem" class="text-danger"></span>
+                <small id="fileHelp" class="form-text text-muted"></small>
             </div>
 
 

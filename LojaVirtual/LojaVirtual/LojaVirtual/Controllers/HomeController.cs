@@ -118,8 +118,7 @@ namespace LojaVirtual.Controllers
                 }
                 else
                 {
-                    //MUDAR PARA AREA DO COLABORADOR
-                    return new RedirectResult(Url.Action(nameof(Index)));
+                    return new RedirectResult(Url.Action("Index", "Usuario", new { Area = "Colaborador" }));
                 }            
                 
             }
