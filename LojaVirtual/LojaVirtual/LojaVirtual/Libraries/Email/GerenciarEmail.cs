@@ -60,21 +60,14 @@ namespace LojaVirtual.Libraries.Email
              * MailMessage -> Construir a mensagem
              */
             MailMessage mensagem = new MailMessage();
-<<<<<<< HEAD
-            mensagem.From = new MailAddress(_configuration.GetValue<string>("Email:Username"));
+            mensagem.From = new MailAddress("andr3y_lim1@gmail.com");
             mensagem.To.Add(usuario.Email);
             mensagem.Subject = "Colaborador - MegaLimp - Senha do colaborador - " + usuario.Nome;
-=======
-            mensagem.From = new MailAddress("andr3y_lim1@gmail.com");
-            mensagem.To.Add(colaborador.Email);
-            mensagem.Subject = "Colaborador - MegaLimp - Senha do colaborador - " + colaborador.Nome;
->>>>>>> 9dec326420679e5a1207bfd4271b31a7e2a0307c
             mensagem.Body = corpoMsg;
             mensagem.IsBodyHtml = true;
 
             //Enviar Mensagem via SMTP
             SendEmail(mensagem);
         }
-
     }
 }

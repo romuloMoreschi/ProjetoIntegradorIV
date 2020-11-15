@@ -18,7 +18,7 @@
                             <article class="card-body">
                                 @if (TempData["MSG_S"] != null)
                                 {
-                    <p class="alert alert-success">@TempData["MSG_S"]</p>}
+                                    <p class="alert alert-success">@TempData["MSG_S"]</p>}
                                 <div class="form-row">
                                     <div class="col form-group">
                                         <label asp-for="Nome">Nome</label>
@@ -64,6 +64,7 @@
                                     <input class="form-control" asp-for="Senha" type="password">
                                     <span asp-validation-for="Senha"></span>
                                 </div>
+                                <input asp-for="TipoUsuario" type="hidden" value="CLIENTE">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block"> Cadastrar </button>
                                 </div>
