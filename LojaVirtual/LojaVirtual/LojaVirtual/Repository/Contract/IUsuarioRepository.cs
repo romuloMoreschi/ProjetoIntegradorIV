@@ -7,8 +7,7 @@ namespace LojaVirtual.Repository.Contract
     public interface IUsuarioRepository
     {
         Usuario Login(string Email, string senha);
-
-
+        //void CadastrarColaborador()
         void Cadastrar(Usuario cliente);
         void Atualizar(Usuario cliente);
         void Excluir(int Id);

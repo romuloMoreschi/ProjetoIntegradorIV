@@ -25,20 +25,26 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
-        public IActionResult Cadastrar()
+        public IActionResult CadastroColaborador()
         {
             return View()
 ;
         }
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm] Models.Usuario usuario)
+        public IActionResult CadastroColaborador([FromForm] Models.Usuario usuario)
         {
+            ModelState.Remove("Senha");
             if (ModelState.IsValid)
             {
-                usuario.TipoUsuario = "colaborador";
+                //TODO - Gerar Senha Aleatorio, Enviar o E-mail do Colaborador
+                usuario.TipoUsuario = "COLABORADOR";
+                usuario.Senha = KeyGenerator.GetUniqueKey(8);
                 _usuarioRepository.Cadastrar(usuario);
                 TempData["MSG_S"] = Mensagem.MSG_S001;
+                //Tem que fazer um modo async para verificar se o email foi enviado ou não
+                _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(usuario);
+                TempData["MSG_S"] = Mensagem.MSG_S004;
                 return RedirectToAction(nameof(Index));
 
             }
