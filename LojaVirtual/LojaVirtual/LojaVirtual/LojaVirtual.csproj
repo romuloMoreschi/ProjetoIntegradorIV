@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0">
       <PrivateAssets>all</PrivateAssets>
@@ -50,6 +50,7 @@
 
 
   <ItemGroup>
+    <None Include="wwwroot\CSS\StyleSheet.css" />
     <None Include="wwwroot\Imagens\AguaSanitaria5L.jpeg" />
     <None Include="wwwroot\Imagens\WhatsApp Image 2020-11-09 at 09.39.23 %281%29.jpeg" />
     <None Include="wwwroot\Imagens\Desinfetante.jpeg" />

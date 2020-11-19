@@ -1,4 +1,4 @@
-﻿@model X.PagedList.IPagedList<LojaVirtual.Models.Produto>
+﻿@model X.PagedList.IPagedList<LojaVirtual.ViewModel.ProdutoViewModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Produto produto in Model)
+                @foreach (var produto in Model)
                 {
                     <tr>
                         <td>
@@ -41,7 +41,7 @@
                             @Html.DisplayFor(model => produto.Valor)
                         </td>
                         <td>
-                            @Html.DisplayFor(model => produto.Imagem)
+                            <img src="@produto.ImagemString" />
                         </td>
                         <td>
                             <a asp-action="Atualizar" asp-route-id="@produto.Id" class="btn btn-secondary">Atualizar</a>

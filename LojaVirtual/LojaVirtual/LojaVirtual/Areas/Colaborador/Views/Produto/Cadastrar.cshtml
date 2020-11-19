@@ -1,4 +1,4 @@
-﻿@model LojaVirtual.Models.Produto
+﻿@model LojaVirtual.ViewModel.ProdutoViewModel
 
 @{
     ViewData["Title"] = "Cadastrar";
@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Cadastrar" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -34,6 +34,7 @@
 
             <div class="form-group">
                 <input asp-for="Imagem" type="file" class="form-control-file">
+                <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
 
             <div class="form-group">
