@@ -4,6 +4,7 @@
     ViewData["Title"] = "Cadastrar";
 }
 
+<br/>
 <h1>Cadastrar</h1>
 
 <h4>Produto</h4>
@@ -32,12 +33,8 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Imagem" class="control-label">File input</label>
-                <input asp-for="Imagem" class="form-control-file" aria-describedby="fileHelp">
-                <span asp-validation-for="Imagem" class="text-danger"></span>
-                <small id="fileHelp" class="form-text text-muted"></small>
+                <input asp-for="Imagem" type="file" class="form-control-file">
             </div>
-
 
             <div class="form-group">
                 <input type="submit" value="Cadastrar" class="btn btn-primary" />
