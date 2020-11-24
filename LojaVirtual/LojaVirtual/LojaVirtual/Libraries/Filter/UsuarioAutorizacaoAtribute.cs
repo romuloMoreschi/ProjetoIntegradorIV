@@ -3,6 +3,7 @@ using System;
 using LojaVirtual.Models;
 using LojaVirtual.Libraries.Login;
 using Microsoft.AspNetCore.Mvc;
+using LojaVirtual.Models.Constantes;
 
 namespace LojaVirtual.Libraries.Filter
 {
@@ -26,11 +27,12 @@ namespace LojaVirtual.Libraries.Filter
 
             if (usuario == null)
             {
-                
+                context.Result = new RedirectToActionResult("Login", "Home", null);
+
             }
             else
             {
-                //context.Result = new ContentResult() { Content = "Acesso negado" };
+                context.Result = new ContentResult() { Content = "Acesso negado" };
             }
         }
     }

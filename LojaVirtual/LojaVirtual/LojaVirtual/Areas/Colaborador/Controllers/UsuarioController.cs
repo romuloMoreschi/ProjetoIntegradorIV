@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using LojaVirtual.Libraries.Texto;
 using X.PagedList;
 using LojaVirtual.Libraries.Email;
+using LojaVirtual.Models.Constantes;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
@@ -38,7 +39,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             if (ModelState.IsValid)
             {
                 //TODO - Gerar Senha Aleatorio, Enviar o E-mail do Colaborador
-                usuario.TipoUsuario = "COLABORADOR";
+                usuario.TipoUsuario = UsuarioTipoConstante.Colaborador;
                 usuario.Senha = KeyGenerator.GetUniqueKey(8);
                 _usuarioRepository.Cadastrar(usuario);
                 TempData["MSG_S"] = Mensagem.MSG_S001;
