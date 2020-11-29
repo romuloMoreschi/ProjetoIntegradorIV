@@ -1,5 +1,4 @@
 ﻿using LojaVirtual.Libraries.Lang;
-using LojaVirtual.Repository;
 using LojaVirtual.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 using LojaVirtual.Libraries.Texto;
@@ -29,7 +28,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         {
             return View()
 ;
-        }
+        }       
 
         [HttpPost]
         public IActionResult CadastroColaborador([FromForm] Models.Usuario usuario)

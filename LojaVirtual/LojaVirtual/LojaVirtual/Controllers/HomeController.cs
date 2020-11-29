@@ -110,17 +110,17 @@ namespace LojaVirtual.Controllers
             {
                 _loginUsuario.Login(clienteDb);
 
-                string _tipoDb = _repositoryUsuario.ConsultaTipo(usuario.Email);
+                bool _tipoDb = _repositoryUsuario.ConsultaTipo(clienteDb.Email);
 
-                if (_tipoDb.Equals("CLIENTE"))
+                if (_tipoDb)
                 {
-                    return new RedirectResult(Url.Action(nameof(Painel)));
+                    return new RedirectResult(Url.Action(nameof(Index)));
                 }
                 else
                 {
                     return new RedirectResult(Url.Action("Index", "Usuario", new { Area = "Colaborador" }));
-                }            
-                
+                }
+
             }
             else
             {
@@ -129,15 +129,6 @@ namespace LojaVirtual.Controllers
 
             }
         }
-
-        [HttpGet]
-        [UsuarioAutorizacaoAtribute]
-        public IActionResult Painel()
-        {
-            return new ContentResult() { Content = "Este é o Painel do Cliente" };
-            
-        }
-
 
         [HttpGet]
         public IActionResult CadastroCliente()
@@ -150,6 +141,7 @@ namespace LojaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
+                cliente.TipoUsuario = "CLIENTE";
                 _repositoryUsuario.Cadastrar(cliente);
                 TempData["MSG_S"] = "Cadastro realizado com sucesso!";
 

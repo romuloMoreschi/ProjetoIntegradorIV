@@ -59,9 +59,10 @@ namespace LojaVirtual.Repository
             return _banco.Usuario;
         }
         
-        public string ConsultaTipo (string email)
+        public bool ConsultaTipo (string email)
         {
-            return _banco.Usuario.Where(p => p.Email.Equals(email)).Select(p => p.TipoUsuario.ToUpper()).ToString();
+            var user = _banco.Usuario.Where(p => p.Email == email).Select(p => p.TipoUsuario).FirstOrDefault();
+            return user == "CLIENTE";
         }
     }
 }

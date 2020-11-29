@@ -11,7 +11,7 @@ namespace LojaVirtual.Repository.Contract
         void Cadastrar(Usuario cliente);
         void Atualizar(Usuario cliente);
         void Excluir(int Id);
-        string ConsultaTipo(string email);
+        bool ConsultaTipo(string email);
         Usuario ObterUsuario(int Id);
         IEnumerable<Usuario> ObterTodosUsuarios();
         IPagedList<Usuario> ObterTodosUsuarios(int? pagina);
