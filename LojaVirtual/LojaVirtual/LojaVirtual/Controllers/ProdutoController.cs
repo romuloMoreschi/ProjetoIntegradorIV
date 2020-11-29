@@ -1,30 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using LojaVirtual.Database;
-using LojaVirtual.Models;
+﻿using System.Linq;
 using System;
 using LojaVirtual.ViewModel;
-using LojaVirtual.Repository.Contract;
+using LojaVirtual.Database;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LojaVirtual.Controllers
 {
     public class ProdutoController : Controller
     {
         private readonly LojaVirtualContext _context;
-        readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoController(LojaVirtualContext context, IProdutoRepository produtoRepository)
+        public ProdutoController(LojaVirtualContext context)
         {
             _context = context;
-            _produtoRepository = produtoRepository;
         }
 
-        public IActionResult Index(int? pagina)
+        public IActionResult Index()
         {
-             var produtos = _produtoRepository.ObterTodosProdutos(pagina).Select(p => new ProdutoViewModel { 
+             var produtos = _context.Produto.Select(p => new ProdutoViewModel { 
                 Id = p.Id,
                 Nome = p.Nome,
                 Descricao = p.Descricao,

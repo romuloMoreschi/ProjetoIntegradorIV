@@ -8,7 +8,6 @@ using LojaVirtual.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using X.PagedList;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {

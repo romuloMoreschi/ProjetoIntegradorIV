@@ -19,7 +19,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="shortcut icon" href="~/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
@@ -35,8 +35,8 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                                <li><a href="tel:+55679999-9999"><i class="fa fa-phone"></i> +55 67 9999-9999</a></li>
+                                <li><a href="mailto:info@domain.com"><i class="fa fa-envelope"></i> info@domain.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href=""><i class="fa fa-user"></i> Conta</a></li>
                                 <li><a href=""><i class="fa fa-star"></i> Lista de desejos</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Carinho</a></li>
+                                <li><a asp-action="CarrinhoCompras" asp-controller="Home" asp-area=""><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                                 <li><a asp-area="" asp-controller="Home" asp-action="Login"><i class="fa fa-lock"></i> Login</a></li>
                             </ul>
                         </div>
@@ -116,11 +116,11 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a asp-action="Index" class="active">Home</a></li>
+                                <li><a asp-action="Index" asp-controller="Home" asp-area="" class="active">Home</a></li>
                                 <li class="dropdown">
                                     <a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Produtos</a></li>
+                                        <li><a asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<LojaVirtual.ViewModel.ProdutoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="advertisement">
+    <div class="container">
+        <img src="~/images/shop/advertisement.jpg" alt="" />
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 padding-right">
+                @{Html.RenderPartial("_MenuLateral");}
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Features Items</h2>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="@item.ImagemString" alt="" />
+                                        <h2>R$@Html.DisplayFor(modelItem => item.Valor)</h2>
+                                        <p>@Html.DisplayFor(modelItem => item.Nome)</p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar ao carrinho</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>R$@Html.DisplayFor(modelItem => item.Valor)</h2>
+                                            <p>@Html.DisplayFor(modelItem => item.Nome)</p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar ao carrinho</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href=""><i class="fa fa-plus-square"></i>Adicionar a lista de desejos</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
