@@ -7,52 +7,149 @@
     <title>@ViewBag.Title</title>
 
     <meta name="description" content="Loja Virtual em ASP.NET">
-    <link rel="stylesheet" href="~/resources/lib/bootstrap-4.2.1-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/resources/lib/caroussel/carousel.css" />
-    <link rel="stylesheet" href="~/resources/lib/bootstrap-ecommerce-uikit/css/ui.css" />
-    <link rel="stylesheet" href="~/resources/lib/bootstrap-ecommerce-uikit/css/responsive.css" media="only screen and (max-width: 1200px)" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="~/CSS/StyleSheet.css" />
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/css/price-range.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" asp-action="Index"> MegaLimp</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-list-ul"></i> Categorias
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" asp-area="" asp-controller="Produto" asp-action="Index">Produto</a>
-                            <div class="dropdown-divider"></div>
+    <header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                            </ul>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contato">
-                        <i class="far fa-address-book"></i> Contato </a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-
-
-
-                    <input class="form-control mr-sm-2" type="search" placeholder="palavra" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisa</button>
-                    <a class="nav-link" asp-controller="Home" asp-action="Login" ><i class="fas fa-user-alt"></i> Login</a>
-                    <a class="nav-link" href="/Home/CarrinhoCompras"><i class="fas fa-shopping-cart"></i> Carrinho</a>
-                </form>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </nav>
-    </header>
+        </div><!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 clearfix">
+                        <div class="logo pull-left">
+                            <a asp-action="Index"><img src="images/home/logo.png" alt="" /></a>
+                        </div>
+                        <div class="btn-group pull-right clearfix">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                    USA
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="">Canada</a></li>
+                                    <li><a href="">UK</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                    DOLLAR
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="">Canadian Dollar</a></li>
+                                    <li><a href="">Pound</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 clearfix">
+                        <div class="shop-menu clearfix pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href=""><i class="fa fa-user"></i> Account</a></li>
+                                <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
+                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="Login"><i class="fa fa-lock"></i> Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a asp-action="Index" class="active">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.html">Products</a></li>
+                                        <li><a href="product-details.html">Product Details</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="blog.html">Blog List</a></li>
+                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="404.html">404</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="Contato">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="search_box pull-right">
+                            <input type="text" placeholder="Search" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+
     <div>
         @RenderBody()
     </div>
@@ -68,10 +165,14 @@
           ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="~/resources/lib/holder/holder.min.js"></script>
-    <script src="~/resources/lib/jquery3.3.1/jquery-3.3.1.min.js"></script>
-    <script src="~/resources/lib/popper1.14.6/popper.min.js"></script>
-    <script src="~/resources/lib/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.scrollUp.min.js"></script>
+    <script src="~/js/price-range.js"></script>
+    <script src="~/js/jquery.prettyPhoto.js"></script>
+    <script src="~/js/main.js"></script>
 
 </body>
 </html>
