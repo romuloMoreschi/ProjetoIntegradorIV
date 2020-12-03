@@ -3,30 +3,33 @@ using System;
 using LojaVirtual.ViewModel;
 using LojaVirtual.Database;
 using Microsoft.AspNetCore.Mvc;
+using LojaVirtual.Repository.Contract;
+using X.PagedList;
 
 namespace LojaVirtual.Controllers
 {
     public class ProdutoController : Controller
     {
-        private readonly LojaVirtualContext _context;
+        readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoController(LojaVirtualContext context)
+        public ProdutoController(IProdutoRepository produtoRepository)
         {
-            _context = context;
+            _produtoRepository = produtoRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? pagina)
         {
-             var produtos = _context.Produto.Select(p => new ProdutoViewModel { 
+            var produtos = _produtoRepository.ObterTodosProdutos(pagina).Select(p => new ProdutoViewModel
+            {
                 Id = p.Id,
                 Nome = p.Nome,
                 Descricao = p.Descricao,
                 Valor = p.Valor,
                 ImagemByte = p.Imagem
-            });;
+            }).AsEnumerable(); ;
 
 
-            foreach(var produto in produtos)
+            foreach (var produto in produtos)
             {
                 if(produto.ImagemByte != null)
                 {

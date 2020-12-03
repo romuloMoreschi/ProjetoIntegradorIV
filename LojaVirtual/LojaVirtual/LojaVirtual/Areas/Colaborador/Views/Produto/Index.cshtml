@@ -3,6 +3,7 @@
     ViewData["Title"] = "Index";
 }
 <br />
+<br />
 <h1>Produtos</h1>
 @if (TempData["MSG_S"] != null)
 {
@@ -23,7 +24,6 @@
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Nome)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Descricao)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Valor)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.First().Imagem)</th>
                     <th scope="col">Acoes</th>
                 </tr>
             </thead>
@@ -40,9 +40,9 @@
                         <td>
                             @Html.DisplayFor(model => produto.Valor)
                         </td>
-                        <td>
-                            <img src="@produto.ImagemString" />
-                        </td>
+                        <!--<td>
+                            <img src="ARROBAproduto.ImagemString" />
+                        </td>-->
                         <td>
                             <a asp-action="Atualizar" asp-route-id="@produto.Id" class="btn btn-secondary">Atualizar</a>
                             <a asp-action="Detalhes" asp-route-id="@produto.Id" class="btn btn-info">Detalhes</a>

@@ -24,22 +24,23 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
         public IActionResult Index(int? pagina)
         {
-            var produtos = _produtoRepository.ObterTodosProdutos(pagina).Select(p => new ProdutoViewModel { 
+            var produtos = _produtoRepository.ObterTodosProdutos(pagina).Select(p => new ProdutoViewModel
+            {
                 Id = p.Id,
                 Nome = p.Nome,
                 Descricao = p.Descricao,
                 Valor = p.Valor,
                 ImagemByte = p.Imagem
-            });;
+            }); ;
 
 
-            foreach(var produto in produtos)
+            foreach (var produto in produtos)
             {
-                if(produto.ImagemByte != null)
+                if (produto.ImagemByte != null)
                 {
                     var base64 = Convert.ToBase64String(produto.ImagemByte);
                     produto.ImagemString = String.Format("data:image/jpg;base64,{0}", base64);
-                }                
+                }
             }
 
             return View(produtos);
@@ -54,16 +55,15 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost]
-        public IActionResult Atualizar([FromForm] Produto produto, int Id)
+        public IActionResult Atualizar([FromForm] ProdutoViewModel produtoVm, int Id)
         {
             if (ModelState.IsValid)
             {
-                _produtoRepository.Atualizar(produto);
+                _produtoRepository.Atualizar(produtoVm);
+
                 TempData["MSG_S"] = "Registro salvo com sucesso!";
-                return RedirectToAction(nameof(Index));
             }
-            ViewBag.Categoria = _produtoRepository.ObterTodosProdutos().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
-            return View();
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Cadastrar()
@@ -72,40 +72,37 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(ProdutoViewModel produtoVm)
+        public IActionResult Cadastrar(ProdutoViewModel produtoVm)
         {
             if (ModelState.IsValid)
             {
-
-                using (var memoryStream = new MemoryStream())
-                {
-                    await produtoVm.Imagem.CopyToAsync(memoryStream);
-
-                    // Upload the file if less than 20 MB
-                    if (memoryStream.Length < 20097152)
-                    {
-                        var produto = new Produto
-                        {
-                            Id = produtoVm.Id,
-                            Nome = produtoVm.Nome,
-                            Descricao = produtoVm.Descricao,
-                            Valor = produtoVm.Valor,
-                            Imagem = memoryStream.ToArray()
-                        };
-
-                        _produtoRepository.Cadastrar(produto);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("File", "O arquivo é grande demais.");
-                    }
-                }
+                _produtoRepository.Cadastrar(produtoVm);
 
                 TempData["MSG_S"] = "Registro salvo com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Categoria = _produtoRepository.ObterTodosProdutos().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
             return View();
+        }
+
+        public IActionResult Detalhes(int id)
+        {
+            var produto = _produtoRepository.ObterProduto(id);
+
+            if (produto.ImagemByte != null)
+            {
+                var base64 = Convert.ToBase64String(produto.ImagemByte);
+                produto.ImagemString = String.Format("data:image/jpg;base64,{0}", base64);
+            }
+
+            return View(produto);
+        }
+
+        public IActionResult Excluir(int id)
+        {
+            _produtoRepository.Excluir(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
