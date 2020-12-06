@@ -29,7 +29,8 @@ namespace LojaVirtual.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return new RedirectResult(Url.Action("Index", "Produto"));
+            // return View();
         }
 
         [HttpPost]

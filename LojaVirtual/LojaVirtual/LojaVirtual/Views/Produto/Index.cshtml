@@ -1,53 +1,119 @@
 ﻿@model X.PagedList.IPagedList<LojaVirtual.ViewModel.ProdutoViewModel>
 
-    @{
-        ViewData["Title"] = "Index";
-    }
+@{
+    ViewData["Title"] = "Index";
+}
 
-    <section id="advertisement">
-        <div class="container">
-            <img src="~/images/shop/advertisement.jpg" alt="" />
+<section id="advertisement">
+    <div class="container">
+        <img src="~/images/shop/advertisement.jpg" alt="" />
+    </div>
+</section>
+
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><span>M</span>-egalimp</h1>
+                                <p>Item de limpeza de todos os tipos. </p>
+                                <button type="button" class="btn btn-default get">Compre agora</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/images/home/girl1.jpg" class="girl img-responsive" alt="" />
+                                <img src="~/images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>M</span>-egalimp</h1>
+                                <h2>100% Seguro</h2>
+                                <p>Se voce nao comprar vai se arrepender!. </p>
+                                <button type="button" class="btn btn-default get">Compre agora</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/images/home/girl2.jpg" class="girl img-responsive" alt="" />
+                                <img src="~/images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>M</span>-egalimp</h1>
+                                <p>Ainda nao comprou ? esta esperando o que ? . </p>
+                                <button type="button" class="btn btn-default get">Compre agora</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/images/home/girl3.jpg" class="girl img-responsive" alt="" />
+                                <img src="~/images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
         </div>
-    </section>
+    </div>
+</section><!--/slider-->
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 padding-right">
-                    @{Html.RenderPartial("_MenuLateral");}
-                    <div class="features_items">
-                        <!--features_items-->
-                        <h2 class="title text-center">Features Items</h2>
 
-                        @foreach (var item in Model)
-                        {
-                            <div class="col-sm-4">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="@item.ImagemString" alt="" />
+<section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                @{Html.RenderPartial("_MenuLateral");}
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Novos produtos</h2>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="@item.ImagemString" alt="" />
+                                        <h2>R$@Html.DisplayFor(modelItem => item.Valor)</h2>
+                                        <p>@Html.DisplayFor(modelItem => item.Nome)</p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar ao carrinho</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
                                             <h2>R$@Html.DisplayFor(modelItem => item.Valor)</h2>
                                             <p>@Html.DisplayFor(modelItem => item.Nome)</p>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar ao carrinho</a>
                                         </div>
-                                        <div class="product-overlay">
-                                            <div class="overlay-content">
-                                                <h2>R$@Html.DisplayFor(modelItem => item.Valor)</h2>
-                                                <p>@Html.DisplayFor(modelItem => item.Nome)</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar ao carrinho</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="choose">
-                                        <ul class="nav nav-pills nav-justified">
-                                            <li><a href=""><i class="fa fa-plus-square"></i>Adicionar a lista de desejos</a></li>
-                                        </ul>
                                     </div>
                                 </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href=""><i class="fa fa-plus-square"></i>Adicionar a lista de desejos</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>

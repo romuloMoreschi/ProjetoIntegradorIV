@@ -117,19 +117,13 @@
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a asp-action="Index" asp-controller="Home" asp-area="" class="active">Home</a></li>
-                                <li class="dropdown">
-                                    <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                <li><a asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li><!--VAI PRA DENTRO DO LI-->
+                                <!-- <li class="dropdown">
+                                   //PRODUTO
                                     <ul role="menu" class="sub-menu">
                                         <li><a asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
                                     </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog Lista</a></li>
-                                        <li><a href="blog-single.html">Blog</a></li>
-                                    </ul>
-                                </li>
+                                </li>-->
                                 <li><a asp-area="" asp-controller="Home" asp-action="Contato">Contato</a></li>
                             </ul>
                         </div>
