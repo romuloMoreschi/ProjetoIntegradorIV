@@ -24,15 +24,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
         public IActionResult Index(int? pagina)
         {
-            var produtos = _produtoRepository.ObterTodosProdutos(pagina).Select(p => new ProdutoViewModel
-            {
-                Id = p.Id,
-                Nome = p.Nome,
-                Descricao = p.Descricao,
-                Valor = p.Valor,
-                ImagemByte = p.Imagem
-            }); ;
-
+            var produtos = _produtoRepository.ObterTodosProdutos(pagina);
 
             foreach (var produto in produtos)
             {
@@ -42,6 +34,8 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
                     produto.ImagemString = String.Format("data:image/jpg;base64,{0}", base64);
                 }
             }
+
+            ViewBag.Categorias = (produtos);
 
             return View(produtos);
         }
@@ -68,6 +62,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
         public IActionResult Cadastrar()
         {
+            ViewBag.Categorias = _produtoRepository.ObterCategorias();
             return View();
         }
 

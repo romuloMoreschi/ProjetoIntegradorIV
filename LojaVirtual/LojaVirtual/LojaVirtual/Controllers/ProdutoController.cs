@@ -19,14 +19,7 @@ namespace LojaVirtual.Controllers
 
         public IActionResult Index(int? pagina)
         {
-            var produtos = _produtoRepository.ObterTodosProdutos(pagina).Select(p => new ProdutoViewModel
-            {
-                Id = p.Id,
-                Nome = p.Nome,
-                Descricao = p.Descricao,
-                Valor = p.Valor,
-                ImagemByte = p.Imagem
-            }).AsEnumerable(); ;
+            var produtos = _produtoRepository.ObterTodosProdutos(pagina).AsEnumerable(); ;
 
 
             foreach (var produto in produtos)

@@ -1,7 +1,8 @@
 ﻿using LojaVirtual.Models;
 using LojaVirtual.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 using X.PagedList;
 
 namespace LojaVirtual.Repository.Contract
@@ -15,6 +16,7 @@ namespace LojaVirtual.Repository.Contract
         ProdutoViewModel MapeiaProdutoToVm(Produto produto);
         ProdutoViewModel ObterProduto(int Id);
         IEnumerable<Produto> ObterTodosProdutos();
-        IPagedList<Produto> ObterTodosProdutos(int? pagina);
+        IPagedList<ProdutoViewModel> ObterTodosProdutos(int? pagina);
+        IQueryable<SelectListItem> ObterCategorias();
     }
 }

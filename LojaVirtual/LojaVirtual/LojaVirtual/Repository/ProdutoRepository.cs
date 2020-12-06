@@ -2,8 +2,10 @@
 using LojaVirtual.Models;
 using LojaVirtual.Repository.Contract;
 using LojaVirtual.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using X.PagedList;
 
@@ -28,6 +30,7 @@ namespace LojaVirtual.Repository
         public void Cadastrar(ProdutoViewModel produtoVm)
         {
             var produto = MapeiaVmToProduto(produtoVm);
+            produto.Categoria = _banco.Categorias.Find(produto.CategoriaId);
             _banco.Add(produto);
             _banco.SaveChanges();
         }
@@ -53,7 +56,9 @@ namespace LojaVirtual.Repository
                         Nome = produtoVm.Nome,
                         Descricao = produtoVm.Descricao,
                         Valor = produtoVm.Valor,
-                        Imagem = memoryStream.ToArray()
+                        Imagem = memoryStream.ToArray(),
+                        CategoriaId = produtoVm.CategoriaId,
+                        Categoria = produtoVm.Categoria
                     };
 
                     return produto;
@@ -70,7 +75,7 @@ namespace LojaVirtual.Repository
             return MapeiaProdutoToVm(_banco.Produto.Find(Id));
         }
 
-        public ProdutoViewModel MapeiaProdutoToVm (Produto produto)
+        public ProdutoViewModel MapeiaProdutoToVm(Produto produto)
         {
             ProdutoViewModel _produto = new ProdutoViewModel
             {
@@ -78,21 +83,39 @@ namespace LojaVirtual.Repository
                 Nome = produto.Nome,
                 Descricao = produto.Descricao,
                 Valor = produto.Valor,
-                ImagemByte = produto.Imagem
+                ImagemByte = produto.Imagem,
+                CategoriaId = produto.CategoriaId,
+                Categoria = produto.Categoria
             };
 
             return _produto;
         }
 
-        public IPagedList<Produto> ObterTodosProdutos(int? pagina)
+        public IPagedList<ProdutoViewModel> ObterTodosProdutos(int? pagina)
         {
             int numeroPagina = pagina ?? 1;
-            return _banco.Produto.ToPagedList<Produto>(numeroPagina, RegistroPorPagina);
+
+            return _banco.Produto.Select(p => new ProdutoViewModel
+            {
+                Id = p.Id,
+                Nome = p.Nome,
+                Descricao = p.Descricao,
+                Valor = p.Valor,
+                ImagemByte = p.Imagem,
+                CategoriaId = p.CategoriaId,
+                Categoria = p.Categoria
+            }).ToPagedList<ProdutoViewModel>(numeroPagina, RegistroPorPagina);
+
         }
 
         public IEnumerable<Produto> ObterTodosProdutos()
         {
             return _banco.Produto;
+        }
+
+        public IQueryable<SelectListItem> ObterCategorias()
+        {
+            return _banco.Categorias.Select(p => new SelectListItem() { Text = p.Nome, Value = p.Id.ToString() }); ;
         }
     }
 }

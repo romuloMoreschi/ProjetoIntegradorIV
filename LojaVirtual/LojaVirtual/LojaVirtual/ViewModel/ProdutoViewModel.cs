@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LojaVirtual.Models;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace LojaVirtual.ViewModel
@@ -14,5 +15,7 @@ namespace LojaVirtual.ViewModel
         public IFormFile Imagem { get; set; }
         public byte[] ImagemByte { get; set; }
         public string ImagemString { get; set; }
+        public int CategoriaId { get; set; }
+        public Categoria Categoria { get; set; }
     }
 }
