@@ -13,6 +13,7 @@ using LojaVirtual.Libraries.Login;
 using System.Net.Mail;
 using System.Net;
 using LojaVirtual.Libraries.Email;
+using System;
 
 namespace LojaVirtual
 {
@@ -73,8 +74,9 @@ namespace LojaVirtual
             services.AddMemoryCache();//Guarda os dados na memoria
             services.AddSession(options =>
             {
-
-
+                //options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
             services.AddScoped<Session>();
             services.AddScoped<LoginUsuario>();
@@ -103,16 +105,6 @@ namespace LojaVirtual
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
-            /*
-             * https://www.site.com.br -> Qual controlador? (Gestão) -> Rotas
-             * https://www.site.com.br/Produto/Visualizar/MouseRazorZK
-             * https://www.site.com.br/Produto/Visualizar/10
-             * https://www.site.com.br/Produto/Visualizar -> Listagem de todos os produtos
-             * 
-             * https://www.site.com.br -> https://www.site.com.br/Home/Index
-             * https://www.site.com.br/Produto -> https://www.site.com.br/Produto/Index
-             */
-
 
             app.UseMvc(routes =>
             {

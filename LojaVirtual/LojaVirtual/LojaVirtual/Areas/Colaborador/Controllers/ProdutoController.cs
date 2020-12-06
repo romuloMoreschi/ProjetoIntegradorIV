@@ -50,7 +50,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         public IActionResult Atualizar(int Id)
         {
             var produto = _produtoRepository.ObterProduto(Id);
-            ViewBag.Produto = _produtoRepository.ObterTodosProdutos().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
+            ViewBag.Produto = _produtoRepository.ObterProduto(Id).ToString();
             return View(produto);
         }
 

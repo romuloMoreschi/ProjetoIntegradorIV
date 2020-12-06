@@ -22,7 +22,6 @@ namespace LojaVirtual.Libraries.Session
         public void Cadastrar(string Key, string Valor)
         {
             _context.HttpContext.Session.SetString(Key, Valor);
-
         }
 
         public void Atualizar(string Key, string Valor)
@@ -47,7 +46,7 @@ namespace LojaVirtual.Libraries.Session
 
         public bool Existe(string Key)
         {
-            if (_context.HttpContext.Session.GetString(Key)==null)
+            if (_context.HttpContext.Session.GetString(Key) == null)
             {
                 return false;
             }
