@@ -80,7 +80,24 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 padding-right">
-                @{Html.RenderPartial("_MenuLateral");}
+                <!--MENU LATERAL-->
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>Categorias</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <!--category-productsr-->
+                            @foreach (var item in Model.Select(p=>p.Categoria))
+                            {
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a href="#">@Html.DisplayFor(modelItem => item.Nome)</a></h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--FIM MENU LATERAL-->
                 <div class="features_items">
                     <!--features_items-->
                     <h2 class="title text-center">Novos produtos</h2>
