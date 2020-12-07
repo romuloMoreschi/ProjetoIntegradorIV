@@ -11,16 +11,19 @@ namespace LojaVirtual.Controllers
     public class ProdutoController : Controller
     {
         readonly IProdutoRepository _produtoRepository;
+        readonly ICategoriaRepository _categoriaRepository;
 
-        public ProdutoController(IProdutoRepository produtoRepository)
+        public ProdutoController(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
         public IActionResult Index(int? pagina)
         {
             var produtos = _produtoRepository.ObterTodosProdutos(pagina).AsEnumerable(); ;
 
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias();
 
             foreach (var produto in produtos)
             {

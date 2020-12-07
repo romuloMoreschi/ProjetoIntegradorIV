@@ -86,7 +86,7 @@
                         <h2>Categorias</h2>
                         <div class="panel-group category-products" id="accordian">
                             <!--category-productsr-->
-                            @foreach (var item in Model.Select(p=>p.Categoria))
+                            @foreach (var item in (IEnumerable<Categoria>)ViewBag.Categorias)
                             {
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
