@@ -93,7 +93,7 @@
                             {
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title"><a href="#">@Html.DisplayFor(modelItem => item.Nome)</a></h4>
+                                        <h4 class="panel-title"><a asp-area="" asp-controller="Produto" asp-route-id="@item.Id" asp-action="CategoriaFiltro">@Html.DisplayFor(modelItem => item.Nome)</a></h4>
                                     </div>
                                 </div>
                             }
@@ -142,7 +142,7 @@
                 }
                 else
                 {
-                    <span>Nenhum registro cadastrado</span>
+                    <span>Nenhum produto cadastrado</span>
 
                 }
             </div>

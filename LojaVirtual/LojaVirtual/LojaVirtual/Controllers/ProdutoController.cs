@@ -27,16 +27,31 @@ namespace LojaVirtual.Controllers
 
             foreach (var produto in produtos)
             {
-                if(produto.ImagemByte != null)
+                if (produto.ImagemByte != null)
                 {
                     var base64 = Convert.ToBase64String(produto.ImagemByte);
                     produto.ImagemString = String.Format("data:image/jpg;base64,{0}", base64);
-                }                
+                }
             }
             return View(produtos);
         }
 
+        public IActionResult CategoriaFiltro(int id)
+        {
+            var produtosFiltrados = _produtoRepository.ObterTodosProdutos().Where(p => p.CategoriaId == id).Select(x =>_produtoRepository.MapeiaProdutoToVm(x)).ToPagedList();
 
+            foreach (var produto in produtosFiltrados)
+            {
+                if (produto.ImagemByte != null)
+                {
+                    var base64 = Convert.ToBase64String(produto.ImagemByte);
+                    produto.ImagemString = String.Format("data:image/jpg;base64,{0}", base64);
+                }
+            }
 
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategorias();
+
+            return View("Index", produtosFiltrados);
+        }
     }
 }
