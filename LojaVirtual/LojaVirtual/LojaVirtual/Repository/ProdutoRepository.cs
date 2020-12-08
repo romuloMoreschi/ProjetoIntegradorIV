@@ -117,5 +117,10 @@ namespace LojaVirtual.Repository
         {
             return _banco.Categorias.Select(p => new SelectListItem() { Text = p.Nome, Value = p.Id.ToString() }); ;
         }
+
+        public IPagedList<ProdutoViewModel> FiltraRegistro(int Id)
+        {
+            return _banco.Produto.Where(p => p.Categoria.Id == Id).Select(x => MapeiaProdutoToVm(x)).ToPagedList();
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace LojaVirtual.Controllers
 
         public IActionResult CategoriaFiltro(int id)
         {
-            var produtosFiltrados = _produtoRepository.ObterTodosProdutos().Where(p => p.CategoriaId == id).Select(x =>_produtoRepository.MapeiaProdutoToVm(x)).ToPagedList();
+            var produtosFiltrados = _produtoRepository.FiltraRegistro(id);
 
             foreach (var produto in produtosFiltrados)
             {

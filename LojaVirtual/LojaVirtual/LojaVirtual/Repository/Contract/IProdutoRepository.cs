@@ -18,5 +18,6 @@ namespace LojaVirtual.Repository.Contract
         IEnumerable<Produto> ObterTodosProdutos();
         IPagedList<ProdutoViewModel> ObterTodosProdutos(int? pagina);
         IQueryable<SelectListItem> ObterCategorias();
+        IPagedList<ProdutoViewModel> FiltraRegistro(int Id);
     }
 }
