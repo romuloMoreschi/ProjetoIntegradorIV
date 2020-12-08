@@ -133,8 +133,11 @@
                                     </div>
                                 </div>
                             </div>
-                        } @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }), new PagedListRenderOptions
-                     { FunctionToTransformEachPageLink = (liTag, aTag) => { aTag.Attributes.Add("class", "page-link".ToString()); return aTag; }, LiElementClasses = new[] { "page-item" }, UlElementClasses = new[] { "pagination  justify-content-center" } })
+                        }
+                        <div class="text-center">
+                            @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }), new PagedListRenderOptions
+                                        { FunctionToTransformEachPageLink = (liTag, aTag) => { aTag.Attributes.Add("class", "page-link".ToString()); return aTag; }, LiElementClasses = new[] { "page-item" }, UlElementClasses = new[] { "pagination  justify-content-center" } })
+                        </div>
                     </div>
                 }
                 else

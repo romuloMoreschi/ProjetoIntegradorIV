@@ -33,8 +33,10 @@ namespace LojaVirtual.Controllers
                     produto.ImagemString = String.Format("data:image/jpg;base64,{0}", base64);
                 }                
             }
-
             return View(produtos);
         }
+
+
+
     }
 }
