@@ -13,7 +13,7 @@ namespace LojaVirtual.Repository
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        const int RegistroPorPagina = 10;
+        const int RegistroPorPagina = 9;
         readonly LojaVirtualContext _banco;
         public ProdutoRepository(LojaVirtualContext banco)
         {
