@@ -45,6 +45,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         {
             var produto = _produtoRepository.ObterProduto(Id);
             ViewBag.Produto = _produtoRepository.ObterProduto(Id).ToString();
+            ViewBag.Categorias = _produtoRepository.ObterCategorias();
             return View(produto);
         }
 

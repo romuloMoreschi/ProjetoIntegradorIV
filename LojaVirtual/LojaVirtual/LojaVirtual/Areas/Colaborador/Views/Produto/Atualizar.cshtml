@@ -1,37 +1,48 @@
-﻿@model LojaVirtual.Models.Produto
+﻿@model LojaVirtual.ViewModel.ProdutoViewModel
 
 @{
     ViewData["Title"] = "Atualizar";
 }
 <br />
 <br />
-<h1>Editar</h1>
+<h1>Atualizar</h1>
 
 <h4>Produto</h4>
 
-<form method="post">
-    <input type="hidden" asp-for="Id" />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" asp-for="Id" />
 
-    <div class="form-group">
-        <label asp-for="Nome"></label>
-        <input asp-for="Nome" class="form-control" placeholder="Digite o novo nome do produto">
-        <span asp-validation-for="Nome" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Nome"></label>
+                <input asp-for="Nome" class="form-control" placeholder="Digite o novo nome do produto">
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao"></label>
+                <input asp-for="Descricao" class="form-control" placeholder="Digite a nova descricao do produto">
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valor"></label>
+                <input asp-for="Valor" class="form-control" placeholder="Digite o novo valor do produto">
+                <span asp-validation-for="Valor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.CategoriaId,
+                 new SelectList(@ViewBag.Categorias, "Value", "Text"),
+                 "Selecione a categoria", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <input asp-for="Imagem" type="file" class="form-control-file">
+                    <span asp-validation-for="Imagem" class="text-danger">Ate 15mb</span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button> <a asp-action="Index" class="btn btn-info">Voltar</a>
+        </form>
     </div>
-    <div class="form-group">
-        <label asp-for="Descricao"></label>
-        <input asp-for="Descricao" class="form-control" placeholder="Digite a nova descricao do produto">
-        <span asp-validation-for="Descricao" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Valor"></label>
-        <input asp-for="Valor" class="form-control" placeholder="Digite o novo valor do produto">
-        <span asp-validation-for="Valor" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <div class="form-group">
-            <input asp-for="Imagem" type="file" class="form-control-file">
-            <span asp-validation-for="Imagem" class="text-danger"></span>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Salvar</button> <a asp-action="Index" class="btn btn-info">Voltar</a>
-</form>
+</div>
