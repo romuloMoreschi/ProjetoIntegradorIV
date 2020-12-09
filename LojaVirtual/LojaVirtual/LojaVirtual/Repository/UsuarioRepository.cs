@@ -49,11 +49,17 @@ namespace LojaVirtual.Repository
             return _banco.Usuario.Find(Id);
         }
 
-        public IPagedList<Usuario> ObterTodosUsuarios(int? pagina)
+        public IPagedList<Usuario> ObterTodosColaboradores(int? pagina)
         {
             int numeroPagina = pagina ?? 1;
-            return _banco.Usuario.ToPagedList<Usuario>(numeroPagina, RegistroPorPagina);
+            return _banco.Usuario.Where(p => p.TipoUsuario == "COLABORADOR").ToPagedList<Usuario>(numeroPagina, RegistroPorPagina); ;
         }
+        public IPagedList<Usuario> ObterTodosClientes(int? pagina)
+        {
+            int numeroPagina = pagina ?? 1;
+            return _banco.Usuario.Where(p => p.TipoUsuario == "CLIENTE").ToPagedList<Usuario>(numeroPagina, RegistroPorPagina); ;
+        }
+
         public IEnumerable<Usuario> ObterTodosUsuarios()
         {
             return _banco.Usuario;

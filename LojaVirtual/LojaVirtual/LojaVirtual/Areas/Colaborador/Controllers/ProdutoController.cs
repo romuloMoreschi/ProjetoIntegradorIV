@@ -7,6 +7,7 @@ using LojaVirtual.Repository.Contract;
 using LojaVirtual.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
@@ -22,8 +23,21 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             _produtoRepository = produtoRepository;
         }
 
-        public IActionResult Index(int? pagina)
+        public IActionResult Index(int? pagina, string search)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var consulta = _produtoRepository.ObterTodosProdutos().AsQueryable();
+
+
+                consulta = consulta.Where(p => p.Nome.ToLower().Contains(search.ToLower()));
+
+
+                var listaDeMateriais = consulta.Select(x => _produtoRepository.MapeiaProdutoToVm(x)).ToPagedList();
+
+                return View(listaDeMateriais);
+            }
+
             var produtos = _produtoRepository.ObterTodosProdutos(pagina);
 
             foreach (var produto in produtos)

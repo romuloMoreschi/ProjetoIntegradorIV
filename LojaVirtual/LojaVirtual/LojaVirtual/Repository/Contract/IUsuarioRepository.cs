@@ -14,6 +14,7 @@ namespace LojaVirtual.Repository.Contract
         bool ConsultaTipo(string email);
         Usuario ObterUsuario(int Id);
         IEnumerable<Usuario> ObterTodosUsuarios();
-        IPagedList<Usuario> ObterTodosUsuarios(int? pagina);
+        IPagedList<Usuario> ObterTodosColaboradores(int? pagina);
+        IPagedList<Usuario> ObterTodosClientes(int? pagina);
     }
 }

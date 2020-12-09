@@ -8,18 +8,19 @@ using LojaVirtual.Libraries.Email;
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
-    public class UsuarioController : Controller
+    public class ColaboradorController : Controller
     {
         private IUsuarioRepository _usuarioRepository;
         private GerenciarEmail _gerenciarEmail;
-        public UsuarioController(IUsuarioRepository usuario, GerenciarEmail gerenciarEmail)
+        public ColaboradorController(IUsuarioRepository usuario, GerenciarEmail gerenciarEmail)
         {
             _usuarioRepository = usuario;
             _gerenciarEmail = gerenciarEmail;
         }
         public IActionResult Index(int? pagina)
         {
-            IPagedList<Models.Usuario> usuario = _usuarioRepository.ObterTodosUsuarios(pagina);
+            var usuario = _usuarioRepository.ObterTodosColaboradores(pagina);
+
             return View(usuario);
         }
 

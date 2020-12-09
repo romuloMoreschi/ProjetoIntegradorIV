@@ -4,8 +4,7 @@
 }
 <br />
 <br />
-<h1>Area do Colaborador</h1>
-<a asp-action="CadastroColaborador" class="btn btn-primary"> Cadastrar</a>
+<h1>Clientes</h1>
 <br />
 <br />
 @if (TempData["MSG_S"] != null)
@@ -36,7 +35,7 @@
                         <td>@usuario.Email</td>
 
                         <td>
-                            <a asp-action="GerarSenha" asp-route-id="@usuario.Id" class="btn btn-secondary">Gerar Senha</a>
+                            <a asp-action="GerarSenha" asp-route-id="@usuario.Id" class="btn btn-secondary">Enviar senha email</a>
                             <a asp-action="Atualizar" asp-route-id="@usuario.Id" class="btn btn-secondary">Atualizar</a>
                             <a asp-action="Excluir" asp-route-id="@usuario.Id" class="btn btn-danger">Excluir</a>
                         </td>

@@ -6,7 +6,7 @@ using LojaVirtual.Libraries.Filter;
 using LojaVirtual.Libraries.Login;
 using LojaVirtual.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
+using Microsoft.EntityFrameworkCore;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
@@ -15,11 +15,15 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     {
         private IUsuarioRepository _repositoryUsuario;
         private LoginUsuario _loginUsuario;
-        public HomeController(IUsuarioRepository repositoryColaborador, LoginUsuario loginUsuario)
+        private IProdutoRepository _produtoRepository;
+
+        public HomeController(IUsuarioRepository repositoryColaborador, LoginUsuario loginUsuario, IProdutoRepository produtoRepository)
         {
             _repositoryUsuario = repositoryColaborador;
             _loginUsuario = loginUsuario;
+            _produtoRepository = produtoRepository;
         }
+       
 
 
         [HttpGet]
@@ -46,10 +50,6 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
             }
         }
-       
-
-
-
         public IActionResult RecupararSenha()
         {
             return View();
