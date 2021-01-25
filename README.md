@@ -1,2 +1,3 @@
 # Projeto Integrador IV (MegaLimp)
-ASP.NET Core MVC 
+Criado na faculdade 3º semestre - ASP.NET Core MVC 
+E-Comerce monolitico com asp.net + c#
