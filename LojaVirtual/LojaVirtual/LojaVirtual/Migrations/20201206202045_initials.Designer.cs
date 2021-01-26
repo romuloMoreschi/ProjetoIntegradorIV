@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20201115031219_initials")]
+    [Migration("20201206202045_initials")]
     partial class initials
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,17 +23,9 @@ namespace LojaVirtual.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CategoriaPaiId");
-
-                    b.Property<string>("Nome")
-                        .IsRequired();
-
-                    b.Property<string>("Slug")
-                        .IsRequired();
+                    b.Property<string>("Nome");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoriaPaiId");
 
                     b.ToTable("Categorias");
                 });
@@ -56,6 +48,8 @@ namespace LojaVirtual.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("CategoriaId");
+
                     b.Property<string>("Descricao");
 
                     b.Property<byte[]>("Imagem");
@@ -65,6 +59,8 @@ namespace LojaVirtual.Migrations
                     b.Property<decimal>("Valor");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Produto");
                 });
@@ -101,11 +97,12 @@ namespace LojaVirtual.Migrations
                     b.ToTable("Usuario");
                 });
 
-            modelBuilder.Entity("LojaVirtual.Models.Categoria", b =>
+            modelBuilder.Entity("LojaVirtual.Models.Produto", b =>
                 {
-                    b.HasOne("LojaVirtual.Models.Categoria", "CategoriaPai")
-                        .WithMany()
-                        .HasForeignKey("CategoriaPaiId");
+                    b.HasOne("LojaVirtual.Models.Categoria", "Categoria")
+                        .WithMany("Produtos")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

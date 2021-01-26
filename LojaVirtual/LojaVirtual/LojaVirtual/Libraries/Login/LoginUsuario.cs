@@ -6,7 +6,7 @@ namespace LojaVirtual.Libraries.Login
 {
     public class LoginUsuario
     {
-        private string Key = "Login.Usuario";
+        private string Key = "LoginUsuario";
         private Session.Session _session;
         public LoginUsuario(Session.Session session)
         {

@@ -3,41 +3,48 @@
 @{
     ViewData["Title"] = "Login";
 }
-<main role="main">
-    <br />
-    <br />
-    <section class="container">
-        <aside class="col-sm-4">
-            <h3 class="subtitle-doc">
-                Login
+<section id="form">
+    <!--form-->
+    <div class="container">
+        @if (ViewData["MSG_E"] != null)
+        {
+            <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
+        }
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form">
+                    <!--login form-->
+                    <h2>Login to your account</h2>
+                    <form asp-action="Login" asp-controller="Home" method="post">
+                        <input asp-for="Email" placeholder="Email" type="email" />
+                        <input asp-for="Senha" class="form-control" placeholder="Digite sua senha" type="password" />
+                        <span>
+                            <input type="checkbox" class="checkbox">
+                            Lembra de min
+                        </span>
+                        <button type="submit" class="btn btn-default btn-block"> Login </button>
+                    </form>
+                </div><!--/login form-->
+            </div>
 
-            </h3>
-            <div id="code_login_1">
-                <div class="card">
-                    <article class="card-body">
-                         @if (ViewData["MSG_E"] != null)
-                         {
-                                <p class="alert alert-danger">@Html.Raw(ViewData["MSG_E"])</p>
-                         }
-                        <a asp-action="CadastroCLiente" asp-controller="Home" class="float-right btn btn-outline-primary">Cadastre-se</a>
-                        <h4 class="card-title mb-4 mt-1">Entrar</h4>
-                        <form method="post">
-                            <div class="form-group">
-                                <label>Your Email</label>
-                                <input asp-for="Email" class="form-control" placeholder="Email" type="email">
-                            </div> <!-- form-group// -->
-                            <div class="form-group">
-                                <a class="float-right" href="#">Esqueceu a senha?</a>
-                                <label>Senha</label>
-                                <input asp-for="Senha" class="form-control" placeholder="Digite sua senha" type="password">
-                            </div> <!-- form-group// -->
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block"> Login </button>
-                            </div> <!-- form-group// -->
-                        </form>
-                    </article>
-                </div> <!-- card.// -->
-            </div> <!-- code-wrap.// -->
-        </aside>
-    </section>
-</main>
+
+            <div class="col-sm-1">
+                <h2 class="or">Ou</h2>
+            </div>
+
+
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <h2>New User Signup!</h2>
+                    <form asp-action="CadastroCliente" asp-controller="Home" method="post">
+                        <input type="text" asp-for="Nome" class="form-control" placeholder="Nome" />
+                        <input type="text" asp-for="Email" class="form-control" placeholder="Email" />
+                        <input asp-for="Senha" type="password" placeholder="Senha" />
+                        <button type="submit" class="btn btn-default"> Cadastrar </button>
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>
+</section><!--/form-->

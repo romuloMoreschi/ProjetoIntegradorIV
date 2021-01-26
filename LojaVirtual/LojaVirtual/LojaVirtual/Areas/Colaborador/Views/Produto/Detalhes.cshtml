@@ -1,0 +1,33 @@
+﻿@model LojaVirtual.ViewModel.ProdutoViewModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+<br />
+<br />
+<h1>Detalhes</h1>
+
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Nome)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Descricao)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Valor)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Imagem)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Nome)</td>
+                <td>@Html.DisplayFor(model => model.Descricao)</td>
+                <td>@Html.DisplayFor(model => model.Valor)</td>
+                <td class="img-thumbnail"> <img src="@Html.DisplayFor(model => model.ImagemString)" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Voltar para a listagem</a>
+</div>

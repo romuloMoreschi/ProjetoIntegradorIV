@@ -1,8 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using LojaVirtual.Models;
 using LojaVirtual.Repository.Contract;
+using LojaVirtual.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
@@ -18,9 +23,34 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             _produtoRepository = produtoRepository;
         }
 
-        public IActionResult Index(int? pagina)
+        public IActionResult Index(int? pagina, string search)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var consulta = _produtoRepository.ObterTodosProdutos().AsQueryable();
+
+
+                consulta = consulta.Where(p => p.Nome.ToLower().Contains(search.ToLower()));
+
+
+                var listaDeMateriais = consulta.Select(x => _produtoRepository.MapeiaProdutoToVm(x)).ToPagedList();
+
+                return View(listaDeMateriais);
+            }
+
             var produtos = _produtoRepository.ObterTodosProdutos(pagina);
+
+            foreach (var produto in produtos)
+            {
+                if (produto.ImagemByte != null)
+                {
+                    var base64 = Convert.ToBase64String(produto.ImagemByte);
+                    produto.ImagemString = String.Format("data:image/jpg;base64,{0}", base64);
+                }
+            }
+
+            ViewBag.Categorias = (produtos);
+
             return View(produtos);
         }
 
@@ -28,40 +58,61 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         public IActionResult Atualizar(int Id)
         {
             var produto = _produtoRepository.ObterProduto(Id);
-            ViewBag.Produto = _produtoRepository.ObterTodosProdutos().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
+            ViewBag.Produto = _produtoRepository.ObterProduto(Id).ToString();
+            ViewBag.Categorias = _produtoRepository.ObterCategorias();
             return View(produto);
         }
 
         [HttpPost]
-        public IActionResult Atualizar([FromForm] Produto produto, int Id)
+        public IActionResult Atualizar([FromForm] ProdutoViewModel produtoVm, int Id)
         {
             if (ModelState.IsValid)
             {
-                _produtoRepository.Atualizar(produto);
+                _produtoRepository.Atualizar(produtoVm);
+
                 TempData["MSG_S"] = "Registro salvo com sucesso!";
-                return RedirectToAction(nameof(Index));
             }
-            ViewBag.Categoria = _produtoRepository.ObterTodosProdutos().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
-            return View();
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Cadastrar()
         {
+            ViewBag.Categorias = _produtoRepository.ObterCategorias();
             return View();
         }
 
         [HttpPost]
-        public ActionResult<Produto> Cadastrar(Produto produto)
+        public IActionResult Cadastrar(ProdutoViewModel produtoVm)
         {
             if (ModelState.IsValid)
             {
-                _produtoRepository.Cadastrar(produto);
+                _produtoRepository.Cadastrar(produtoVm);
 
                 TempData["MSG_S"] = "Registro salvo com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Categoria = _produtoRepository.ObterTodosProdutos().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
             return View();
+        }
+
+        public IActionResult Detalhes(int id)
+        {
+            var produto = _produtoRepository.ObterProduto(id);
+
+            if (produto.ImagemByte != null)
+            {
+                var base64 = Convert.ToBase64String(produto.ImagemByte);
+                produto.ImagemString = String.Format("data:image/jpg;base64,{0}", base64);
+            }
+
+            return View(produto);
+        }
+
+        public IActionResult Excluir(int id)
+        {
+            _produtoRepository.Excluir(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

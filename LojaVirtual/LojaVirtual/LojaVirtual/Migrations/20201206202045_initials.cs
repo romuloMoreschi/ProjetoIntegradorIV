@@ -13,19 +13,11 @@ namespace LojaVirtual.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(nullable: false),
-                    Slug = table.Column<string>(nullable: false),
-                    CategoriaPaiId = table.Column<int>(nullable: true)
+                    Nome = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categorias", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Categorias_Categorias_CategoriaPaiId",
-                        column: x => x.CategoriaPaiId,
-                        principalTable: "Categorias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,22 +31,6 @@ namespace LojaVirtual.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NewsletterEmails", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Produto",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(nullable: true),
-                    Descricao = table.Column<string>(nullable: true),
-                    Valor = table.Column<decimal>(nullable: false),
-                    Imagem = table.Column<byte[]>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Produto", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,17 +53,37 @@ namespace LojaVirtual.Migrations
                     table.PrimaryKey("PK_Usuario", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Produto",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(nullable: true),
+                    Descricao = table.Column<string>(nullable: true),
+                    Valor = table.Column<decimal>(nullable: false),
+                    Imagem = table.Column<byte[]>(nullable: true),
+                    CategoriaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produto", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Produto_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categorias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Categorias_CategoriaPaiId",
-                table: "Categorias",
-                column: "CategoriaPaiId");
+                name: "IX_Produto_CategoriaId",
+                table: "Produto",
+                column: "CategoriaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Categorias");
-
             migrationBuilder.DropTable(
                 name: "NewsletterEmails");
 
@@ -96,6 +92,9 @@ namespace LojaVirtual.Migrations
 
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "Categorias");
         }
     }
 }
