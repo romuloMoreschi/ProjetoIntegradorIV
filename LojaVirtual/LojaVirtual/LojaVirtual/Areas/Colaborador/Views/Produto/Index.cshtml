@@ -1,7 +1,8 @@
-﻿@model X.PagedList.IPagedList<LojaVirtual.Models.Produto>
+﻿@model X.PagedList.IPagedList<LojaVirtual.ViewModel.ProdutoViewModel>
 @{
     ViewData["Title"] = "Index";
 }
+<br />
 <br />
 <h1>Produtos</h1>
 @if (TempData["MSG_S"] != null)
@@ -23,12 +24,12 @@
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Nome)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Descricao)</th>
                     <th scope="col">@Html.DisplayNameFor(model => model.First().Valor)</th>
-                    <th scope="col">@Html.DisplayNameFor(model => model.First().Imagem)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().Categoria)</th>
                     <th scope="col">Acoes</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (Produto produto in Model)
+                @foreach (var produto in Model)
                 {
                     <tr>
                         <td>
@@ -41,8 +42,11 @@
                             @Html.DisplayFor(model => produto.Valor)
                         </td>
                         <td>
-                            @Html.DisplayFor(model => produto.Imagem)
+                            @Html.DisplayFor(model => produto.Categoria.Nome)
                         </td>
+                        <!--<td>
+                            <img src="ARROBAproduto.ImagemString" />
+                        </td>-->
                         <td>
                             <a asp-action="Atualizar" asp-route-id="@produto.Id" class="btn btn-secondary">Atualizar</a>
                             <a asp-action="Detalhes" asp-route-id="@produto.Id" class="btn btn-info">Detalhes</a>

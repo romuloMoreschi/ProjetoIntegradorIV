@@ -1,5 +1,4 @@
 ﻿using LojaVirtual.Libraries.Lang;
-using LojaVirtual.Repository;
 using LojaVirtual.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 using LojaVirtual.Libraries.Texto;
@@ -10,18 +9,19 @@ using LojaVirtual.Models.Constantes;
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
-    public class UsuarioController : Controller
+    public class ColaboradorController : Controller
     {
         private IUsuarioRepository _usuarioRepository;
         private GerenciarEmail _gerenciarEmail;
-        public UsuarioController(IUsuarioRepository usuario, GerenciarEmail gerenciarEmail)
+        public ColaboradorController(IUsuarioRepository usuario, GerenciarEmail gerenciarEmail)
         {
             _usuarioRepository = usuario;
             _gerenciarEmail = gerenciarEmail;
         }
         public IActionResult Index(int? pagina)
         {
-            IPagedList<Models.Usuario> usuario = _usuarioRepository.ObterTodosUsuarios(pagina);
+            var usuario = _usuarioRepository.ObterTodosColaboradores(pagina);
+
             return View(usuario);
         }
 
@@ -30,7 +30,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         {
             return View()
 ;
-        }
+        }       
 
         [HttpPost]
         public IActionResult CadastroColaborador([FromForm] Models.Usuario usuario)
